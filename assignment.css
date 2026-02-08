@@ -1,0 +1,122 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: linear-gradient(135deg, #2ec4f1, #4facfe);
+  padding: 20px;
+}
+
+.title {
+  text-align: center;
+  color: white;
+  margin-bottom: 20px;
+}
+
+.dashboard {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.card {
+  background: #ffffffdd;
+  padding: 20px;
+  border-radius: 12px;
+  width: 320px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+}
+
+.card.large {
+  width: 600px;
+}
+
+.card h2 {
+  margin-top: 0;
+}
+
+label {
+  display: block;
+  margin-top: 10px;
+  font-weight: bold;
+}
+
+input, select, textarea {
+  width: 100%;
+  padding: 8px;
+  margin-top: 5px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+textarea {
+  resize: none;
+  height: 60px;
+}
+
+button {
+  width: 100%;
+  margin-top: 15px;
+  padding: 10px;
+  background: #7b5cff;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #6848f5;
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.small-btn {
+  width: auto;
+  padding: 6px 10px;
+  margin-left: 5px;
+  font-size: 12px;
+}
+
+.event {
+  background: #f1f5ff;
+  border-radius: 10px;
+  padding: 15px;
+  margin-top: 15px;
+  position: relative;
+}
+
+.event .delete {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: red;
+  color: white;
+  border-radius: 50%;
+  width: 22px;
+  height: 22px;
+  border: none;
+  cursor: pointer;
+}
+
+.badge {
+  display: inline-block;
+  background: #3b82f6;
+  color: white;
+  padding: 4px 8px;
+  border-radius: 6px;
+  font-size: 12px;
+  margin-top: 5px;
+}
+
+.dom-demo {
+  margin-top: 20px;
+}
+
+.demo-box {
+  background: #eef3ff;
+  padding: 15px;
+  border-radius: 8px;
+}
