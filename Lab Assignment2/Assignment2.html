@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="Assignment2.css">
+</head>
+
+<body>
+    <div class="container1">
+        <h1>🌤️ Async Weather Tracker</h1>
+        <div id="main-container">
+            <div id="search-container">
+                <div id="first-search">
+                    <h3>Search city</h3>
+                    <form action="">
+                        <input type="text" id="city-input" placeholder="Delhi, Mumbai, etc.." required>
+                        <button type="submit">Search</button>
+                    </form>
+                </div>
+                <div id="search-history">
+                    <h3>Search History</h3>
+                    <div id="search-city-box"> </div>
+                </div>
+            </div>
+            <div id="weather-display">
+                <h3>Weather Info</h3>
+                <div id="weather-info-box">
+                    No weather info yet
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+        localStorage.clear()
+        let API_key = "1cec2ae116576852eecdf4c133a4f81f";
+        let form = document.querySelector("form")
+        let city = document.querySelector("#city-input")
+        let weather = document.querySelector("#weather-info-box")
+        let history = document.querySelector('#search-city-box')
+        // let searchHistory = document.querySelector('#search-city-box')
+        let list = []
+    //    let historyLocal = JSON.parse(localStorage.getItem("City")) || []
+
+        let URL = "https://api.openweathermap.org/data/2.5/weather?q=${cityInput.value}&appid=${API_key}&units=metric";
+        async function getWeatherInfo(city) {
+          
+            
+            let response = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_key}&units=metric`)
+            let data = await response.json()
+            let card = document.createElement('div')
+            card.innerHTML = `<div class="weather-item">City:${data.name},${data.sys.country}</div>
+                        <div class="weather-item">Temp:${data.main.temp}°C</div>
+                        <div class="weather-item">Weather:${data.weather[0].main}</div>
+                        <div class="weather-item">Humidity:${data.main.humidity}%</div>
+                        <div class="weather-item">Wind Speed:${data.wind.speed} m/s</div>`
+            weather.innerHTML = ""
+
+            weather.append(card)
+
+            if(!list.includes(city)){
+                list.push(city)
+            }
+
+            localStorage.setItem("City",JSON.stringify(list))
+            historyLocal = JSON.parse(localStorage.getItem("City") || []);
+
+            history.innerHTML = ""
+
+           historyLocal.forEach((item)=>{
+            let cityElement=document.createElement("button")
+            cityElement.textContent = item;
+            history.append(cityElement)
+            cityElement.addEventListener("click",()=>{
+                getWeatherInfo(item)
+            })
+
+
+
+           })
+
+        }
+        // searchHistory.innerHTML = `<h4>${localStorage.getItem("City")}</h4>`
+        // getWeatherInfo(localStorage.getItem("City"))
+        form.addEventListener("submit", (e) => {
+            e.preventDefault()
+            getWeatherInfo(city.value)
+
+        })
+
+
+
+
+    </script>
+
+
+</body>
+
+</html>
